@@ -3,11 +3,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Idempotency {
+class Idempotency {
 
     private final HashMap<RequestType, HashSet<IdempotencyData>> idempotencyMap;
 
-    public Idempotency() {
+    protected Idempotency() {
         idempotencyMap = new HashMap<>();
     }
 
@@ -24,7 +24,7 @@ public class Idempotency {
      * @param idempotencyData Data to add to the set
      * @return true if entry did not exist yet
      */
-    public synchronized boolean putIdempotencyData(RequestType requestType, IdempotencyData idempotencyData) {
+    protected synchronized boolean putIdempotencyData(RequestType requestType, IdempotencyData idempotencyData) {
         HashSet<IdempotencyData> idempotencySet = getIdempotencySet(requestType);
         boolean result = idempotencySet.add(idempotencyData);
         putIdempotencySet(requestType, idempotencySet);
@@ -36,14 +36,14 @@ public class Idempotency {
      * @param idempotencyData Data to remove from the set
      * @return True if the data that was requested to be removed was in the set and was removed
      */
-    public synchronized boolean removeIdempotencyData(RequestType requestType, IdempotencyData idempotencyData) {
+    protected synchronized boolean removeIdempotencyData(RequestType requestType, IdempotencyData idempotencyData) {
         HashSet<IdempotencyData> idempotencySet = getIdempotencySet(requestType);
         boolean result = idempotencySet.remove(idempotencyData);
         putIdempotencySet(requestType, idempotencySet);
         return result;
     }
 
-    public synchronized Set<IdempotencyData> getIdempotencyData(RequestType requestType) {
+    protected synchronized Set<IdempotencyData> getIdempotencyData(RequestType requestType) {
         return Collections.unmodifiableSet(getIdempotencySet(requestType));
     }
 }

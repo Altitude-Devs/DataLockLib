@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {
+class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {
 
     private final DataLock dataLock;
     private final Idempotency alreadyReceived;

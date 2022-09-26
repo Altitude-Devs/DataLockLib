@@ -5,11 +5,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.UUID;
 
-public class DataLock implements DataLockInterface {
+class DataLock implements DataLockInterface {
 
     private static DataLock instance = null;
 
-    public static DataLock getInstance() {
+    protected static DataLock getInstance() {
         if (instance == null)
             instance = new DataLock();
         return instance;
@@ -35,7 +35,7 @@ public class DataLock implements DataLockInterface {
 
     private final HashSet<String> activeChannels = new HashSet<>();
 
-    public boolean removeActiveRequest(RequestType requestType, IdempotencyData idempotencyData) {
+    protected boolean removeActiveRequest(RequestType requestType, IdempotencyData idempotencyData) {
         return activeRequests.removeIdempotencyData(requestType, idempotencyData);
     }
 

@@ -2,7 +2,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class DataLockLib extends JavaPlugin {
 
-    public static DataLockLib instance;
+    private static DataLockLib instance;
 
     protected static DataLockLib getInstance() {
         return instance;

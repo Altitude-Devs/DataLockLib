@@ -1,4 +1,4 @@
-public enum RequestType {
+enum RequestType {
     TRY_LOCK("try-lock"),
     TRY_UNLOCK("try-unlock"),
     CHECK_LOCK("check-lock");

@@ -22,8 +22,16 @@ public class LockResponseEvent extends Event {
         return channel;
     }
 
+    public ResponseType getResponseType() {
+        return responseType;
+    }
+
     public String getData() {
         return data;
+    }
+
+    public boolean getResult() {
+        return result;
     }
 
     public @NotNull HandlerList getHandlers() {
