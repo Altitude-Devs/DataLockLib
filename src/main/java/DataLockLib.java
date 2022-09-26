@@ -15,18 +15,11 @@ public class DataLockLib extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        registerEvents();
     }
 
     @Override
     public void onDisable() {
 
-    }
-
-    private void registerEvents() {
-//        getServer().getPluginManager().registerEvents(new TalkToQuest(), this);
-//        getServer().getMessenger().registerOutgoingPluginChannel(this, "aquest:player-data");
-//        getServer().getMessenger().registerIncomingPluginChannel(this, "aquest:player-data", new PluginMessageListener());
     }
 
 }

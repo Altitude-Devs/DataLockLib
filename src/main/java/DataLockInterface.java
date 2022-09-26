@@ -4,4 +4,8 @@ public interface DataLockInterface {
 
     void tryUnlock(String channel, String data);
 
+    void registerChannel(String channel);
+
+    boolean isActiveChannel(String channel);
+
 }
