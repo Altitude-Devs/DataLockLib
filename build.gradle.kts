@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ConfigureShadowRelocatio
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("maven-publish")
 }
 
 group = "com.alttd"
@@ -40,6 +41,22 @@ tasks {
     create<ConfigureShadowRelocation>("relocateJars") {
         target = shadowJar.get()
         prefix = "${project.name}.lib"
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+
+    repositories{
+        maven {
+            name = "maven"
+            url = uri("https://repo.destro.xyz/snapshots")
+            credentials(PasswordCredentials::class)
+        }
     }
 }
 
