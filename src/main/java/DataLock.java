@@ -5,11 +5,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.UUID;
 
-class DataLock {
+public class DataLock {
 
     private static DataLock instance = null;
 
-    protected static DataLock getInstance() {
+    public static DataLock getInstance() {
         if (instance == null)
             instance = new DataLock();
         return instance;
