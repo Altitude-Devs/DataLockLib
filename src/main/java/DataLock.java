@@ -5,7 +5,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashSet;
 import java.util.UUID;
 
-class DataLock implements DataLockInterface {
+class DataLock {
 
     private static DataLock instance = null;
 
@@ -39,26 +39,22 @@ class DataLock implements DataLockInterface {
         return activeRequests.removeIdempotencyData(requestType, idempotencyData);
     }
 
-    @Override
     public synchronized void registerChannel(String channel) {
         activeChannels.add(channel);
         plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, channel);
         plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, channel, pluginMessageListener);
     }
 
-    @Override
     public synchronized boolean isActiveChannel(String channel) {
         return activeChannels.contains(channel);
     }
 
-    @Override
     public void tryLock(String channel, String data) {
         IdempotencyData idempotencyData = new IdempotencyData(channel, data, UUID.randomUUID());
         activeRequests.putIdempotencyData(RequestType.TRY_LOCK, idempotencyData);
         sendPluginMessage(RequestType.TRY_LOCK, idempotencyData);
     }
 
-    @Override
     public void tryUnlock(String channel, String data) {
         IdempotencyData idempotencyData = new IdempotencyData(channel, data, UUID.randomUUID());
         activeRequests.putIdempotencyData(RequestType.TRY_UNLOCK, idempotencyData);
