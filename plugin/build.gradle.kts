@@ -51,7 +51,7 @@ tasks {
 }
 
 bukkit {
-    name = project.name
+    name = rootProject.name
     main = "$group.${rootProject.name}"
     version = gitCommit()
     apiVersion = "1.19"
