@@ -26,7 +26,7 @@ tasks {
 
 bukkit {
     name = project.name
-    main = "$group.${project.name}"
+    main = "$group.${rootProject.name}"
     version = gitCommit()
     apiVersion = "1.19"
     authors = listOf("Teriuihi")
