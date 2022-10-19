@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream
+
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "7.1.0"
@@ -45,4 +47,14 @@ publishing {
 
 dependencies {
     compileOnly("com.alttd:Galaxy-API:1.19.2-R0.1-SNAPSHOT")
+}
+
+fun gitCommit(): String {
+    val os = ByteArrayOutputStream()
+    project.exec {
+        isIgnoreExitValue = true
+        commandLine = "git rev-parse --short HEAD".split(" ")
+        standardOutput = os
+    }
+    return String(os.toByteArray()).trim()
 }
