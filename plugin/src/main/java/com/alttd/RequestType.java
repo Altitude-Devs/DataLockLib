@@ -1,3 +1,5 @@
+package com.alttd;
+
 enum RequestType {
     TRY_LOCK("try-lock"),
     TRY_UNLOCK("try-unlock"),

@@ -1,3 +1,5 @@
+package com.alttd;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class DataLockLib extends JavaPlugin {

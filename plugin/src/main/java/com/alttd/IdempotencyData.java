@@ -1,3 +1,5 @@
+package com.alttd;
+
 import java.util.UUID;
 
 record IdempotencyData(String channel, String data, UUID idempotencyToken) {

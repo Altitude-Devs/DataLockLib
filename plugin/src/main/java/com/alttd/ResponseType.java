@@ -1,3 +1,5 @@
+package com.alttd;
+
 public enum ResponseType {
     TRY_LOCK_RESULT,
     QUEUE_LOCK_FAILED,
