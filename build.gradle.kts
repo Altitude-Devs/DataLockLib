@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.alttd"
+    group = "com.alttd.datalock"
     version = "1.0.0-SNAPSHOT"
     description = "Altitude DataLock Library."
 }

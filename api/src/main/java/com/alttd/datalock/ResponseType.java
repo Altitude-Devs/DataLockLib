@@ -1,4 +1,4 @@
-package com.alttd;
+package com.alttd.datalock;
 
 public enum ResponseType {
     TRY_LOCK_RESULT,

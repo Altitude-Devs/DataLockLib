@@ -7,9 +7,7 @@ dependencies {
 }
 
 tasks {
-    jar {
-        enabled = false
-    }
+
 }
 
 publishing {

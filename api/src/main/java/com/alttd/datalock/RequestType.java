@@ -1,4 +1,4 @@
-package com.alttd;
+package com.alttd.datalock;
 
 enum RequestType {
     TRY_LOCK("try-lock"),

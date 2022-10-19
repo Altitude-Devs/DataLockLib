@@ -1,4 +1,4 @@
-package com.alttd;
+package com.alttd.datalock;
 
 import java.util.Collections;
 import java.util.HashMap;

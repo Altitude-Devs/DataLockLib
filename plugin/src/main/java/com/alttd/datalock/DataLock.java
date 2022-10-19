@@ -1,4 +1,4 @@
-package com.alttd;
+package com.alttd.datalock;
 
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;

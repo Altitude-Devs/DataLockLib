@@ -1,4 +1,4 @@
-package com.alttd;
+package com.alttd.datalock;
 
 import org.jetbrains.annotations.ApiStatus;
 
