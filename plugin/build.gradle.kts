@@ -3,6 +3,7 @@ import java.io.ByteArrayOutputStream
 plugins {
     `maven-publish`
     id("com.github.johnrengelman.shadow")
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
     id("xyz.jpenilla.run-paper") version "1.0.6"
 }
 
@@ -21,6 +22,14 @@ tasks {
         dependsOn(shadowJar)
     }
 
+}
+
+bukkit {
+    name = project.name
+    main = "$group.${project.name}"
+    version = gitCommit()
+    apiVersion = "1.19"
+    authors = listOf("Teriuihi")
 }
 
 fun gitCommit(): String {
