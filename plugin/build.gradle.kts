@@ -14,6 +14,10 @@ dependencies {
 
 tasks {
 
+    jar {
+        enabled = false
+    }
+
     shadowJar {
         archiveFileName.set("${rootProject.name}.jar")
     }
