@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream
+
 plugins {
     `maven-publish`
     id("com.github.johnrengelman.shadow")
@@ -12,11 +14,21 @@ dependencies {
 tasks {
 
     shadowJar {
-        archiveFileName.set("${rootProject.name}-${project.version}.jar")
+        archiveFileName.set("${rootProject.name}.jar")
     }
 
     build {
         dependsOn(shadowJar)
     }
 
+}
+
+fun gitCommit(): String {
+    val os = ByteArrayOutputStream()
+    project.exec {
+        isIgnoreExitValue = true
+        commandLine = "git rev-parse --short HEAD".split(" ")
+        standardOutput = os
+    }
+    return String(os.toByteArray()).trim()
 }
