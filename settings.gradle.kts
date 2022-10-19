@@ -1,5 +1,8 @@
 rootProject.name = "DataLockLib"
 
+include(":api")
+include(":plugin")
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
