@@ -18,7 +18,7 @@ public class DataLockLib extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        dataLock = new DataLock();
+        dataLock = DataLock.getInstance();
     }
 
     @Override

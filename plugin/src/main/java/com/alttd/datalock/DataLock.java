@@ -20,7 +20,7 @@ public class DataLock implements DataLockAPI {
     private final PluginMessageListener pluginMessageListener;
     private final DataLockLib plugin;
     private final Idempotency activeRequests;
-    protected DataLock() {
+    private DataLock() {
         DataLockAPI.Provider.register(this);
         pluginMessageListener = new PluginMessageListener();
         plugin = DataLockLib.getInstance();
