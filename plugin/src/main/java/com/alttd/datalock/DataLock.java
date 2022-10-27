@@ -5,6 +5,7 @@ import com.google.common.io.ByteStreams;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.UUID;
 
 public class DataLock implements DataLockAPI {
@@ -13,7 +14,7 @@ public class DataLock implements DataLockAPI {
 
     public static DataLock getInstance() {
         if (instance == null)
-            instance = new DataLock();
+            new DataLock();
         return instance;
     }
 
@@ -21,6 +22,7 @@ public class DataLock implements DataLockAPI {
     private final DataLockLib plugin;
     private final Idempotency activeRequests;
     private DataLock() {
+        instance = this;
         DataLockAPI.Provider.register(this);
         pluginMessageListener = new PluginMessageListener();
         plugin = DataLockLib.getInstance();
