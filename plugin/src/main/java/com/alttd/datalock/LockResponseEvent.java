@@ -1,6 +1,5 @@
 package com.alttd.datalock;
 
-import com.alttd.datalock.ResponseType;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
