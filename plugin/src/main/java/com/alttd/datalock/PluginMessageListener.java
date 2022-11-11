@@ -35,31 +35,31 @@ class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessage
                         if (!alreadyReceived.putIdempotencyData(RequestType.TRY_LOCK, idempotencyData))
                             return;
                         DataLock.getInstance().removeActiveRequest(RequestType.TRY_LOCK, idempotencyData);
-                        new LockResponseEvent(true, channel, ResponseType.TRY_LOCK_RESULT, data, result);
+                        new LockResponseEvent(true, channel, ResponseType.TRY_LOCK_RESULT, data, result).callEvent();
                     }
                     case "queue-lock-failed" -> {
                         if (!alreadyReceived.putIdempotencyData(RequestType.TRY_LOCK, idempotencyData))
                             return;
                         DataLock.getInstance().removeActiveRequest(RequestType.TRY_LOCK, idempotencyData);
-                        new LockResponseEvent(true, channel, ResponseType.QUEUE_LOCK_FAILED, data, result);
+                        new LockResponseEvent(true, channel, ResponseType.QUEUE_LOCK_FAILED, data, result).callEvent();
                     }
                     case "try-unlock-result" -> {
                         if (!alreadyReceived.putIdempotencyData(RequestType.TRY_UNLOCK, idempotencyData))
                             return;
                         DataLock.getInstance().removeActiveRequest(RequestType.TRY_UNLOCK, idempotencyData);
-                        new LockResponseEvent(true, channel, ResponseType.TRY_UNLOCK_RESULT, data, result);
+                        new LockResponseEvent(true, channel, ResponseType.TRY_UNLOCK_RESULT, data, result).callEvent();
                     }
                     case "locked-queue-lock" -> {
                         if (!alreadyReceived.putIdempotencyData(RequestType.TRY_LOCK, idempotencyData))
                             return;
                         DataLock.getInstance().removeActiveRequest(RequestType.TRY_LOCK, idempotencyData);
-                        new LockResponseEvent(true, channel, ResponseType.LOCKED_QUEUE_LOCK, data, result);
+                        new LockResponseEvent(true, channel, ResponseType.LOCKED_QUEUE_LOCK, data, result).callEvent();
                     }
                     case "check-lock-result" -> {
                         if (!alreadyReceived.putIdempotencyData(RequestType.CHECK_LOCK, idempotencyData))
                             return;
                         DataLock.getInstance().removeActiveRequest(RequestType.CHECK_LOCK, idempotencyData);
-                        new LockResponseEvent(true, channel, ResponseType.CHECK_LOCK_RESULT, data, result);
+                        new LockResponseEvent(true, channel, ResponseType.CHECK_LOCK_RESULT, data, result).callEvent();
                     }
                 }
             }
