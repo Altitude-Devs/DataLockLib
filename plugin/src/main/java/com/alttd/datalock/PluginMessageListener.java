@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
+import java.util.logging.Level;
 
 class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {
 
@@ -23,14 +24,16 @@ class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessage
             return;
         }
         ByteArrayDataInput in = ByteStreams.newDataInput(bytes);
-        String data = in.readUTF();
+        String subChannel = in.readUTF();
         boolean result = in.readBoolean();
+        String data = in.readUTF();
         UUID idempotency = UUID.fromString(in.readUTF());
         IdempotencyData idempotencyData = new IdempotencyData(channel, data, idempotency);
+        DataLockLib.getInstance().getLogger().log(Level.INFO, "Received plugin message on [" + subChannel + "] about data: [" + data + "]");
         new BukkitRunnable() {
             @Override
             public void run() {
-                switch (in.readUTF()) {
+                switch (subChannel) {
                     case "try-lock-result" -> {
                         if (!alreadyReceived.putIdempotencyData(RequestType.TRY_LOCK, idempotencyData))
                             return;

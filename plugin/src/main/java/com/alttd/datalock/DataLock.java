@@ -5,8 +5,8 @@ import com.google.common.io.ByteStreams;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class DataLock implements DataLockAPI {
 
@@ -35,7 +35,9 @@ public class DataLock implements DataLockAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(requestType.subChannel);
         out.writeUTF(idempotencyData.data());
+        out.writeUTF(idempotencyData.idempotencyToken().toString());
         plugin.getServer().sendPluginMessage(plugin, idempotencyData.channel(), out.toByteArray());
+        DataLockLib.getInstance().getLogger().log(Level.INFO, "Send plugin message on [" + requestType.subChannel + "] about data: [" + idempotencyData.data() + "]");
     }
 
     private final HashSet<String> activeChannels = new HashSet<>();
@@ -74,8 +76,8 @@ public class DataLock implements DataLockAPI {
         @Override
         public void run() {
             for (RequestType requestType : RequestType.values()) {
-                for (IdempotencyData next : activeRequests.getIdempotencyData(requestType)) {
-                    sendPluginMessage(requestType, next);
+                for (IdempotencyData idempotencyData : activeRequests.getIdempotencyData(requestType)) {
+                    sendPluginMessage(requestType, idempotencyData);
                 }
             }
         }

@@ -6,7 +6,7 @@ plugins {
 
 allprojects {
     group = "com.alttd.datalock"
-    version = "1.0.0-SNAPSHOT"
+    version = "1.1.0-SNAPSHOT"
     description = "Altitude DataLock Library."
 }
 
@@ -23,7 +23,7 @@ subprojects {
 
 tasks {
     jar {
-        enabled = false
+        enabled = true
     }
 }
 
