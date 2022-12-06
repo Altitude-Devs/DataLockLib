@@ -37,7 +37,6 @@ public class DataLock implements DataLockAPI {
         out.writeUTF(idempotencyData.data());
         out.writeUTF(idempotencyData.idempotencyToken().toString());
         plugin.getServer().sendPluginMessage(plugin, idempotencyData.channel(), out.toByteArray());
-        DataLockLib.getInstance().getLogger().log(Level.INFO, "Send plugin message on [" + requestType.subChannel + "] about data: [" + idempotencyData.data() + "]");
     }
 
     private final HashSet<String> activeChannels = new HashSet<>();
