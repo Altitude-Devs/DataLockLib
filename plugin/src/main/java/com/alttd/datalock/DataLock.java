@@ -48,6 +48,7 @@ public class DataLock implements DataLockAPI {
 
     @Override
     public synchronized void registerChannel(String channel) {
+        DataLockLib.getInstance().getLogger().log(Level.INFO, "Registering plugin channel on [" + channel + "]");
         activeChannels.add(channel);
         plugin.getServer().getMessenger().registerOutgoingPluginChannel(plugin, channel);
         plugin.getServer().getMessenger().registerIncomingPluginChannel(plugin, channel, pluginMessageListener);

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class LockResponseEvent extends Event {
 
-    private final HandlerList handlers = new HandlerList();
+    private static final HandlerList handlers = new HandlerList();
     private final String channel;
     private final ResponseType responseType;
     private final String data;
@@ -36,6 +36,11 @@ public class LockResponseEvent extends Event {
         return result;
     }
 
+    public static @NotNull HandlerList getHandlerList() {
+        return handlers;
+    }
+
+    @Override
     public @NotNull HandlerList getHandlers() {
         return handlers;
     }
